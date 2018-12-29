@@ -6,10 +6,9 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
-
 import Restaurants from '../Restaurants/Restaurants';
 
-import { AppProvider } from '../Context/AppProvider';
+//import { AppProvider } from '../Context/AppProvider';
 import { GRAPHQL_API_URL } from '../../utils/constants';
 
 const httpLink = new HttpLink({ uri: GRAPHQL_API_URL });
@@ -74,12 +73,11 @@ export const RootNavigator = createSwitchNavigator(
   }
 );
 
+// appprovider 
 const App = () => (
-  <ApolloProvider client={client}>
-    <AppProvider>
-      <RootNavigator />
-    </AppProvider>
-  </ApolloProvider>
+    <ApolloProvider client={client}>
+        <RootNavigator />
+    </ApolloProvider>
 );
 
 export default App;

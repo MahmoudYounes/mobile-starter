@@ -2,11 +2,16 @@ import React from 'react';
 import {
   View,
   ActivityIndicator,
-  Text
+  Text,
+  StyleSheet,
+  ViewPagerAndroid
 } from 'react-native';
+import Swiper from 'react-native-swiper';
 
 import { Query } from 'react-apollo';
 import { RESTAURANT_SEARCH_QUERY } from '../../graphql/queries';
+//import RestaurantsList  from './RestaurantsList';
+import Restaurant from './Restaurant';
 
 export default class Restaurants extends React.Component {
   state = {
@@ -22,34 +27,34 @@ export default class Restaurants extends React.Component {
           query={RESTAURANT_SEARCH_QUERY}
           variables={{
             address
-          }}
-        >
+          }}>
+
           {({ loading, error, data = {} }) => {
             if (loading) {
               return (
-                <View style={{ width: '100%', paddingVertical: 10 }}>
-                  sdfg
-                  <ActivityIndicator size="large" style={{ padding: 30 }} />
+                <View style={{ width: '100%', paddingVertical: 10, alignContent: "center" }}>
+                  <Text style={{alignSelf:"center"}}>Loading...</Text>
+                  <ActivityIndicator size="large" style={{ padding: 30}} />
                 </View>
               );
             }
 
-            console.log('DO SOMETHING SMART WITH THIS DATA');
-            console.log('data', data);
-            console.log('error', error);
-
-            // Make sure we have data
+            var mainStyles = StyleSheet.create({
+              container:{
+                flex:1
+              }
+            });
             if (data.search_restaurants && data.search_restaurants.results && data.search_restaurants.results.length > 0) {
+              var restaurants = data.search_restaurants.results.filter((elem) => elem.images && elem.images.length > 0);
               return (
-                <View style={{ width: '100%', paddingVertical: 10 }}>
-                  <Text>Num Restaurants: {data.search_restaurants.results.length}</Text>
-                  <Text>----</Text>
-                  {data.search_restaurants.results.map((r) => {
-                    return (
-                      <Text key={r.id}>{r.title}</Text>
-                    );
-                  })}
-                </View>
+                  <View>
+                    <View>
+                      <Text>Hard 1</Text>
+                    </View>
+                    <View>
+                      <Text>Hard 2</Text>
+                    </View>
+                  </View>
               );
             }
 
