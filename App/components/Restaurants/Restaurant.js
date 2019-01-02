@@ -14,7 +14,7 @@ var restaurantStyles = StyleSheet.create({
 	cardView:{
 		borderRadius: 21,
 		borderWidth: 1,
-		height:500,
+		flex:1,
 		backgroundColor: "white"
 	},
 	cardTitle: {
@@ -32,7 +32,7 @@ var restaurantStyles = StyleSheet.create({
 	backgroundImageStyle: {
 		width:"100%", 
 		height:"80%",
-		marginTop: 60,
+		marginTop: 40,
 	},
 	RestaurantTitle: {
 		flex: 1, 
