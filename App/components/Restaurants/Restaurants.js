@@ -4,7 +4,7 @@ import {
   ActivityIndicator,
   Text,
   StyleSheet,
-  ViewPagerAndroid
+  ViewPagerAndroid,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -12,18 +12,6 @@ import { Query } from 'react-apollo';
 import { RESTAURANT_SEARCH_QUERY } from '../../graphql/queries';
 //import RestaurantsList  from './RestaurantsList';
 import Restaurant from './Restaurant';
-
-
-const mainStyles = StyleSheet.create({
-  container:{
-    width: "100%",
-    height: "100%",
-    padding: 10,
-    paddingBottom: 60,
-    paddingTop: 70,
-    backgroundColor: "#eff4ff"
-  }
-});
 
 export default class Restaurants extends React.Component {
   state = {
@@ -51,17 +39,13 @@ export default class Restaurants extends React.Component {
               );
             }
 
-            var mainStyles = StyleSheet.create({
-              container:{
-              }
-            });
             if (data.search_restaurants && data.search_restaurants.results && data.search_restaurants.results.length > 0) {
               var restaurants = data.search_restaurants.results.filter((elem) => elem.images && elem.images.length > 0)
               .map((elem, idx) => {
                 return <Restaurant restaurant={elem} key={idx}></Restaurant>
               });
               return (
-                  <ViewPagerAndroid style={{flex: 2}}>
+                  <ViewPagerAndroid style={mainStyles.container} >
                     {restaurants}
                   </ViewPagerAndroid>
               );
@@ -80,6 +64,11 @@ export default class Restaurants extends React.Component {
   }
 }
 
-const styles = {
-};
-
+const mainStyles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: "#eff4ff",
+    paddingTop: 50,
+    alignItems:"center"
+  }
+});
