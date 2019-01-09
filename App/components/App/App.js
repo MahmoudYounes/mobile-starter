@@ -76,7 +76,7 @@ export const RootNavigator = createSwitchNavigator(
 // appprovider 
 const App = () => (
     <ApolloProvider client={client}>
-        <RootNavigator />
+        <RootNavigator style={{flex: 1}}/>
     </ApolloProvider>
 );
 
