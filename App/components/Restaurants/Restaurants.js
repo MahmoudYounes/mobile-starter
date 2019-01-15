@@ -49,6 +49,7 @@ export default class Restaurants extends React.Component {
                       .map((restaurant, idx) => {
                         var imageUri = restaurant.images && restaurant.images.length > 0 ? restaurant.images[0] : "";
                         var restaurantType = restaurant.description && restaurant.description.slice(restaurant.description.indexOf(',') + 1).trim() || "American Standard Cusine";
+                        console.log(restaurant);
                         return (
                           <View style={mainStyles.restaurantPage} key={idx}>
                             <View style={restaurantStyles.cardView}>
@@ -59,7 +60,14 @@ export default class Restaurants extends React.Component {
                                 </TouchableHighlight>
                               </View>
                               <View style={restaurantStyles.cardInfo}>
-                                  <Text>how long</Text>
+                                  <View style={restaurantStyles.cardInfoItem}>
+                                    <Icon name="stars" type="materialicon" color="#4285f4"/>
+                                    <Text style={{color: "#001f4d", paddingTop:1}}>{restaurant.rating}</Text>
+                                  </View>
+                                  <View style={restaurantStyles.cardInfoItem}>
+                                    <Icon name="drive-eta" type="materialicon" color="#4285f4"/>
+                                    <Text style={{color: "#001f4d", paddingTop:1}}>{parseInt(restaurant.distance) + 1} km</Text>
+                                  </View>
                               </View>
                               <View style={restaurantStyles.cardBody}>
                                   <ImageBackground source={{uri:imageUri}} style={restaurantStyles.backgroundImage}>
@@ -138,8 +146,15 @@ var restaurantStyles = StyleSheet.create({
 	},
 	cardInfo: {
     flex: 1,
-    padding: 5
-	},
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignContent: "space-around",
+  },
+  cardInfoItem: {
+    flex: 1,
+    flexDirection: "row",
+    alignSelf:"center",
+  },
 	cardBody: {
 		flex: 7,
   },
