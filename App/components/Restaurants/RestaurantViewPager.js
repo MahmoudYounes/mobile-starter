@@ -18,7 +18,6 @@ export default class RestaurantViewPager extends React.Component {
     callRestaurant(phoneNumber) {
         if (phoneNumber && !isNaN(phoneNumber)) {
             let link = `tel:${phoneNumber}`;
-            console.log(link);
             Linking.canOpenURL(link).then(supported => {
                 if (!supported) {
                     console.log("this url structure is not supported");
@@ -52,15 +51,15 @@ export default class RestaurantViewPager extends React.Component {
                                         <View style={restaurantStyles.cardInfo}>
                                             <View style={restaurantStyles.cardInfoItem}>
                                                 <Icon name="stars" type="materialicon" color="#4285f4" />
-                                                <Text style={{ color: "#001f4d", paddingTop: 1 }}>{restaurant.rating}</Text>
+                                                <Text style={restaurantStyles.cardInfoText}>{restaurant.rating}</Text>
                                             </View>
                                             <View style={restaurantStyles.cardInfoItem}>
                                                 <Icon name="drive-eta" type="materialicon" color="#4285f4" />
-                                                <Text style={{ color: "#001f4d", paddingTop: 1 }}>{parseInt(restaurant.distance) + 1} km</Text>
+                                                <Text style={restaurantStyles.cardInfoText}>{parseInt(restaurant.distance) + 1} km</Text>
                                             </View>
                                             <View style={restaurantStyles.cardInfoItem}>
                                                 <Icon name="drive-eta" type="materialicon" color="#4285f4" />
-                                                <Text style={{ color: "#001f4d", paddingTop: 1 }}>{parseInt(restaurant.distance) + 1} km</Text>
+                                                <Text style={restaurantStyles.cardInfoText}>{parseInt(restaurant.distance) + 1} km</Text>
                                             </View>
                                         </View>
                                         <View style={restaurantStyles.cardBody}>
@@ -135,6 +134,10 @@ var restaurantStyles = StyleSheet.create({
     },
     cardInfoItem: {
         flexDirection: "row",
+    },
+    cardInfoText: {
+        color: "#001f4d",
+        paddingTop: 1
     },
     cardBody: {
         flex: 7,
